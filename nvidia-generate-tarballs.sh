@@ -44,13 +44,12 @@ cp -f *.json* 32/
 cd ..
 
 KMOD=nvidia-kmod-${VERSION}-x86_64
-KMOD_COMMON=nvidia-kmod-common-${VERSION}
 USR_64=nvidia-driver-${VERSION}-x86_64
 USR_32=nvidia-driver-${VERSION}-i386
 
 mkdir ${KMOD} ${KMOD_COMMON} ${USR_64} ${USR_32}
 mv ${TEMP_UNPACK}/kernel ${KMOD}/
-mv ${TEMP_UNPACK}/firmware ${KMOD_COMMON}/
+mv ${TEMP_UNPACK}/firmware ${KMOD}/
 mv ${TEMP_UNPACK}/32/* ${USR_32}/
 rm -fr ${TEMP_UNPACK}/32
 mv ${TEMP_UNPACK}/* ${USR_64}/
@@ -59,7 +58,7 @@ rm -fr ${TEMP_UNPACK}
 
 printf "OK\n"
 
-for tarball in ${KMOD} ${KMOD_COMMON} ${USR_32} ${USR_64}; do
+for tarball in ${KMOD} ${USR_32} ${USR_64}; do
 
     printf "Creating tarball $tarball... "
 
